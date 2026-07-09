@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HEMT Physical Media Label</title>    
+    <!-- QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        /* Base setup for exact physical sizing */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Label Container: Fixed at exactly 70mm width with a pure white background */
+        .label-container {
+            width: 70mm;
+            box-sizing: border-box;
+            padding: 4mm 2mm 4mm 4mm;
+            background: #ffffff;
+            color: #111111;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* Header containing model name and serial number */
+        .header {
+            width: 100%;
+            font-size: 11pt;
+            font-weight: bold;
+            letter-spacing: 0.2px;
+            margin-bottom: 3mm;
+            white-space: nowrap;
+        }
+
+        /* Left Side: Data Table Column */
+        .table-section {
+            width: 58%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9.5pt;
+        }
+
+        .data-table th, .data-table td {
+            padding: 3px 2px;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+        /* Alignment styles matching the layout of the photo label */
+        .data-table th:first-child, 
+        .data-table td:first-child {
+            text-align: left;
+            font-weight: bold;
+            width: 20%;
+            padding-left: 0;
+        }
+
+        .data-table th {
+            font-weight: normal;
+        }
+        
+        .border-bottom {
+            border-bottom: 1px solid #111111;
+        }
+
+        /* Right Side: Fixed container for the generated QR code script */
+        .qr-section {
+            width: 42%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        /* Force the library canvas/image elements to scale down exactly to 23mm */
+        #qrcode img, #qrcode canvas {
+            width: 23mm !important;
+            height: 23mm !important;
+            display: block;
+        }
+
+        /* Optimization rules specifically for physical printing output */
+        @media print {
+            body {
+                background: none;
+            }
+            .label-container {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="label-container">
+        <!-- Model and Serial Number Header -->
+        <div class="header">
+            LNF-LNC0.3_14A s/n 2142Z
+        </div>
+
+        <!-- Left Column: Specs Table -->
+        <div class="table-section">
+            <table class="data-table">
+                <thead>
+                    <tr class="border-bottom">
+                        <th></th>
+                        <th>296 K</th>
+                        <th>4 K</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>V<sub>d</sub></td>
+                        <td>1.80 V</td>
+                        <td>1.30 V</td>
+                    </tr>
+                    <tr>
+                        <td>I<sub>d</sub></td>
+                        <td>50 mA</td>
+                        <td>26 mA</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td>V<sub>g</sub></td>
+                        <td>-1.33 V</td>
+                        <td>-1.41 V</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Right Column: Instantiated QR Code container targets ID hook -->
+        <div class="qr-section">
+            <div id="qrcode"></div>
+        </div>
+    </div>
+
+    <script>
+        // Generated block size configuration matches layout space
+        var codesquaresize = 150; 
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "https://www.lownoisefactory.com/datasheets/LNF-LNC0.3_14A_sn2142Z.pdf",
+            width: codesquaresize,
+            height: codesquaresize,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    </script>
+</body>
+</html>
