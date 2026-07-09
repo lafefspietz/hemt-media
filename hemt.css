@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 20px; 
+    background-color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+.labels-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20mm; 
+    row-gap: 10mm;
+}
+
+.label-container {
+    width: 70mm;
+    box-sizing: border-box;
+    padding: 4mm 2mm 4mm 4mm;
+    background: #ffffff;
+    color: #111111;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px dotted #aaaaaa; 
+}
+
+.header {
+    width: 100%;
+    font-size: 10.5pt; 
+    font-weight: bold;
+    letter-spacing: 0.1px;
+    margin-bottom: 2.5mm; 
+    white-space: nowrap;
+    line-height: 1.3;
+}
+
+.table-section {
+    width: 58%;
+    display: flex;
+    flex-direction: column;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+}
+
+.data-table th, .data-table td {
+    padding: 4px 2px; 
+    text-align: right;
+    vertical-align: middle;
+}
+
+.data-table th:first-child, 
+.data-table td:first-child {
+    text-align: left;
+    font-weight: bold;
+    width: 20%;
+    padding-left: 0;
+}
+
+.data-table th {
+    font-weight: normal;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #111111;
+}
+
+.qr-section {
+    width: 42%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.qr-container img, .qr-container canvas {
+    width: 23mm !important;
+    height: 23mm !important;
+    display: block;
+}
+
+@media print {
+    body {
+        background: none;
+        padding: 0;
+    }
+    .label-container {
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+}
