@@ -1,5 +1,6 @@
-# [hemt-media](https://github.com/lafefspietz/hemt-media)
+![](qrcode.png)
 
+# [hemt-media](https://github.com/lafefspietz/hemt-media)
 
 ![](physical-amplifiers.png)
 

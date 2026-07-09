@@ -86,6 +86,16 @@
             </div>
         </div>
 
+        <!-- LABEL 3 (GitHub Repository Link) -->
+        <div class="label-container">
+            <div class="header">
+                github.com/lafefspietz/hemt-media/
+            </div>
+            <div style="width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 1mm;">
+                <div id="qrcode_repo" class="qr-container"></div>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -109,6 +119,16 @@
             colorLight : "#ffffff",
             correctLevel : QRCode.CorrectLevel.H
         });
+
+        // Generate GitHub Repo QR Code
+        new QRCode(document.getElementById("qrcode_repo"), {
+            text: "https://github.com/lafefspietz/hemt-media",
+            width: codesquaresize,
+            height: codesquaresize,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
     </script>
     
 <style>
@@ -121,10 +141,13 @@ body {
     print-color-adjust: exact;
 }
 
+/* Added flex-wrap and row-gap to shift overflowing labels to the next row automatically */
 .labels-wrapper {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 20mm; 
+    row-gap: 10mm;
 }
 
 .label-container {
@@ -208,8 +231,6 @@ body {
     }
 }
 
-
-
-    </style>    
+</style>    
 </body>
 </html>
